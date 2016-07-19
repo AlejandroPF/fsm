@@ -1,0 +1,23 @@
+.navbar {
+    margin-bottom: 0 !important;
+}
+.page-header {
+    margin: 0;
+    border-bottom: solid 1px $border;
+    padding: 1em;
+    h1,h2,h3,h4,h5,h6 {
+        margin: 0.25em;
+    }
+    p {
+        margin: 0.25em 0;
+    }
+}
+/*
+* Añade cursor a elementos bootstrap
+*/
+.nav, 
+.pagination, 
+.carousel, 
+.panel-title a {
+    cursor: pointer; 
+}

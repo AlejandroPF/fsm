@@ -1,0 +1,25 @@
+<div class="container" log="login-view">
+    <br/>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+            <form ng-submit="login(user, password)">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>LOGIN</strong>
+                    </div>
+                    <div class="panel-body">
+                        <label>usuario</label>
+                        <input type="text" id="user" class="form-control" ng-model="user" autofocus="true"/>
+                        <label>contraseña</label>
+                        <input type="password" id="password" class="form-control" ng-model="password"/>
+                        <br/>
+                        <div ng-if="error" class="alert alert-danger">{{error}}</div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary btn-block">Acceder</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
