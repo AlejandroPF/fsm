@@ -2,7 +2,7 @@ var module = angular.module("FsmApp.services", []);
 module.service("HttpService", function ($http, $q) {
     var host = "http://fsm-ws.dev/";
     var endPoints = {
-        authenticate: host + "authenticate/"
+        authenticate: host + "authenticate/",
     };
     return {
         authenticate: function (user, password) {
@@ -16,5 +16,14 @@ module.service("HttpService", function ($http, $q) {
             });
             return request;
         },
+        authenticateToken: function (token) {
+            return $http({
+                method: "post",
+                url: endPoints.authenticate,
+                data: {
+                    token: token
+                }
+            });
+        }
     }
 });
