@@ -36,6 +36,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
         $routeParams.path = "/";
     }
     $scope.source = $routeParams.path;
+    //todo Comprobar la ruta con el servicio web
 });
 module.controller("LoginController", function ($scope, $location, HttpService) {
     var storage = localStorage;
