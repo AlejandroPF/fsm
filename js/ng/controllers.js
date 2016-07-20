@@ -3,6 +3,31 @@ var module = angular.module("FsmApp.controllers", []);
 module.controller("MainController", function ($scope, $location, HttpService) {
     //todo App Controller
 });
+module.controller("BreadcrumbController", function ($scope) {
+    var pathLevel = function (route) {
+        return {
+            source: route,
+            name: null
+        }
+    }
+    $scope.pathLevel = [];
+    var path = $scope.source;
+    var root = new pathLevel("/");
+    root.name = "/";
+    $scope.pathLevel.push(root);
+    if (path !== "/") {
+        var routes = path.split("/");
+        var currentPath = "";
+        for (var index = 0; index < routes.length; index++) {
+            if (routes[index].length > 0) {
+                currentPath += "/" + routes[index];
+                var el = new pathLevel(currentPath);
+                el.name = routes[index];
+                $scope.pathLevel.push(el);
+            }
+        }
+    }
+});
 module.controller("NavController", function ($scope) {
 
 });

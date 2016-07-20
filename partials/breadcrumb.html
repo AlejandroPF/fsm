@@ -1,0 +1,6 @@
+<ol class='breadcrumb' ng-controller="BreadcrumbController">
+    <li ng-repeat="element in pathLevel track by $index"  ng-class="$last ? 'active' : ''">
+        <a href='/#/!{{element.source}}' ng-if="!$last">{{element.name}}</a>
+        <span ng-if="$last">{{element.name}}</span>
+    </li>
+</ol>
