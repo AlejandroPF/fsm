@@ -3,13 +3,19 @@ var module = angular.module("FsmApp.controllers", []);
 module.controller("MainController", function ($scope, $location, HttpService) {
     //todo App Controller
 });
-module.controller("FsController", function ($scope, $location, HttpService,$routeParams) {
-    console.log("FSController");
+module.controller("NavController", function ($scope) {
+
+});
+module.controller("FsController", function ($scope, $location, HttpService, $routeParams) {
+    if ("undefined" === typeof $routeParams.path) {
+        $routeParams.path = "/";
+    }
+    $scope.source = $routeParams.path;
 });
 module.controller("LoginController", function ($scope, $location, HttpService) {
     var storage = localStorage;
     storage.clear();
-    $scope.error = null;    
+    $scope.error = null;
     $scope.login = function (usr, pwd) {
         // Comprueba si se han completado los campos usuario y contraseña
         if ("undefined" === typeof usr || "" === usr.trim()) {
@@ -19,7 +25,7 @@ module.controller("LoginController", function ($scope, $location, HttpService) {
         } else {
             HttpService.authenticate(usr, pwd).success(function (data) {
                 if (!data.error) {
-                    storage.setItem("token",data.response);
+                    storage.setItem("token", data.response);
                     // Redirige al index
                     $location.path("/!/");
                 } else {
