@@ -1,4 +1,27 @@
 @charset "UTF-8";
+.resource {
+  width: 125px;
+  background-color: #eee;
+  border: solid 1px #e0e0e0;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0.25em;
+}
+.resource .resource-header {
+  font-size: 300%;
+  color: #E7D995;
+  text-shadow: 2px 2px 3px #aaa;
+  padding: 0 !important;
+  text-align: center;
+}
+.resource .resource-content {
+  font-size: 150%;
+  text-align: center;
+}
+.resource.resource-file .resource-header {
+  color: black !important;
+}
+
 .navbar {
   margin-bottom: 0 !important;
 }
