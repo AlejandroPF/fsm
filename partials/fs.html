@@ -1,11 +1,14 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <ng-include src="'partials/breadcrumb.html'"></ng-include>
 <div class="alert alert-danger" ng-if="error">{{error}}</div>
-<div ng-repeat="element in resources" class="resource {{element.class}}">
-    <div class="resource-header" ng-mouseenter="changeIcon(element,element.iconHover)" ng-mouseleave="changeIcon(element, element.iconNormal)">
-        <span class="{{element.icon}}"></span>
-    </div>
-    <div class="resource-content">
-        {{element.name}}
+<div class="container-fluid">
+    <div class="alert alert-{{alert.class}}" ng-if="alert">{{alert.message}}</div>
+    <div ng-repeat="element in resources" class="resource {{element.class}}" ng-click="cd(element.anchor)">
+        <div class="resource-header" ng-mouseenter="changeIcon(element, element.iconHover)" ng-mouseleave="changeIcon(element, element.iconNormal)">
+            <span class="{{element.icon}}"></span>
+        </div>
+        <div class="resource-content">
+            {{element.name}}
+        </div>
     </div>
 </div>
