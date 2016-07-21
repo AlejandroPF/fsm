@@ -7,13 +7,15 @@ module.controller("BreadcrumbController", function ($scope) {
     var pathLevel = function (route) {
         return {
             source: route,
-            name: null
+            name: null,
+            isIcon: false // Si es TRUE crean un elemento span con attr. class cuyo valor ese el pathLevel.name
         }
     }
     $scope.pathLevel = [];
     var path = $scope.source;
     var root = new pathLevel("/");
-    root.name = "/";
+    root.isIcon = true;
+    root.name = "fa fa-home";
     $scope.pathLevel.push(root);
     if (path !== "/") {
         var routes = path.split("/");
