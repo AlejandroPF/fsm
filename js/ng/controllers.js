@@ -51,6 +51,11 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
     $scope.changeIcon = function (resource, newIcon) {
         resource.icon = newIcon;
     }
+    $scope.cd = function(path){
+        var src = $scope.source + path;
+        src = src.replace("/{0,}","/");
+        $location.path("/!/"+src);
+    }
     HttpService.getResources($scope.source).success(function (data) {
         if (!data.error) {
             var directories = data.response.directories;
