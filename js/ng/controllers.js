@@ -172,7 +172,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
         // Elimina los posibles "/" repetidos
         src = src.replace(/[/]{1,}/g, "/");
         // Quita el slash inicial
-        src = src.substr(0, 1) == "/" ? src.substr(1) : src;
+        src = src.substr(0, 1) === "/" ? src.substr(1) : src;
         $location.path("/!/" + src);
     }
     HttpService.getResources($scope.source).success(function (data) {
