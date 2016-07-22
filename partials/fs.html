@@ -3,7 +3,7 @@
 <div class="alert alert-danger" ng-if="error">{{error}}</div>
 <div class="container-fluid">
     <div class="alert alert-{{alert.class}}" ng-if="alert">{{alert.message}}</div>
-    <div ng-repeat="element in resources" class="resource {{element.class}}" ng-click="cd(element.anchor)" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover)" ng-mouseleave="changeIcon(element, element.iconNormal)">
+    <div ng-repeat="element in resources" class="resource {{element.class}}" ng-click="element.click()" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover)" ng-mouseleave="changeIcon(element, element.iconNormal)">
         <div class="resource-header" >
             <span class="{{element.icon}}"></span>
         </div>
@@ -12,3 +12,28 @@
         </div>
     </div>
 </div>
+<div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{modal.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4"><strong>Tamaño</strong></div>
+                    <div class="col-md-4">{{modal.element.size}}</div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><strong>Última modificación</strong></div>
+                    <div class="col-md-4">{{modal.element.lastUpdate}}</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-download-alt"></span> Descargar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -4,6 +4,7 @@ module.service("HttpService", function ($http, $q) {
     var endPoints = {
         authenticate: host + "authenticate/",
         files: host + "files/",
+        fileInfo: host +"info/"
     };
     var getToken= function(){
         return localStorage.getItem("token");
@@ -37,6 +38,15 @@ module.service("HttpService", function ($http, $q) {
                     token: getToken()
                 }
             })
+        },
+        getFileInfo: function(path){
+            return $http({
+                method: "post",
+                url: endPoints.fileInfo +path,
+                data: {
+                    token: getToken()
+                }
+            });
         }
     }
 });

@@ -52,6 +52,9 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
             iconNormal: "",
             iconHover: "",
             name: "",
+            click: function () {
+                // Click event
+            },
             parseFileType: function () {
                 var split = this.name.split(".");
                 switch (split[split.length - 1]) {
@@ -175,9 +178,26 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
         src = src.substr(0, 1) === "/" ? src.substr(1) : src;
         $location.path("/!/" + src);
     }
+    $scope.modal = {
+        title: "",
+        element: null
+    }
+    $scope.openFileInfo = function (source, name) {
+        $scope.modal.title = name;
+        HttpService.getFileInfo($scope.source + name).success(function (data) {
+            if (!data.error) {
+                $scope.modal.element = data.response;
+                $('.modal').modal("show");    
+            } else {
+                console.log(data);
+                $scope.alert.class="danger";
+                $scope.alert.message= data.response.message;
+            }
+        })
+
+    }
     HttpService.getResources($scope.source).success(function (data) {
         if (!data.error) {
-            console.log(data);
             var directories = data.response.directories;
             var files = data.response.files;
             if (directories.length === 0 && files.length === 0) {
@@ -194,6 +214,9 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
                 res.icon = "fa fa-folder";
                 res.iconNormal = res.icon;
                 res.iconHover = "fa fa-folder-open";
+                res.click = function () {
+                    $scope.cd(this.anchor);
+                }
                 $scope.resources.push(res);
             }
             for (var index = 0; index < files.length; index++) {
@@ -204,6 +227,9 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
                 res.class = "resource-file";
                 res.iconNormal = res.icon;
                 res.iconHover = "fa fa-file";
+                res.click = function () {
+                    $scope.openFileInfo(this.anchor, this.name);
+                }
                 res.parseFileType();
                 $scope.resources.push(res);
             }
