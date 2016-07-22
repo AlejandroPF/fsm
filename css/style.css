@@ -1,12 +1,17 @@
 @charset "UTF-8";
 .resource {
+  display: inline-block;
   cursor: pointer;
   min-width: 125px;
+  vertical-align: top;
+  box-sizing: border-box;
+  border: solid 1px transparent;
+  border-radius: 4px;
+  margin: 0.25em;
+}
+.resource:hover {
   background-color: #eee;
   border: solid 1px #e0e0e0;
-  border-radius: 4px;
-  display: inline-block;
-  margin: 0.25em;
 }
 .resource .resource-header {
   font-size: 300%;
@@ -16,9 +21,15 @@
   text-align: center;
 }
 .resource .resource-content {
-  font-size: 150%;
+  font-size: 125%;
+  line-height: 1.5em;
   text-align: center;
   padding: 0 0.5em;
+  min-width: 15ch;
+  max-width: 32ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .resource.resource-file .resource-header {
   color: black !important;

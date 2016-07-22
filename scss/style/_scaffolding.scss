@@ -1,10 +1,16 @@
 .resource {
+    display: inline-block;
     cursor: pointer;
     min-width: 125px;
-    background-color: #eee;
-    border: solid 1px #e0e0e0;
+    vertical-align: top;
+
+    box-sizing: border-box;
+    &:hover {
+        background-color: #eee;
+        border: solid 1px #e0e0e0;
+    }
+    border: solid 1px transparent;
     border-radius: 4px;
-    display: inline-block;
     margin: 0.25em;
     .resource-header {
         font-size: 300%;
@@ -14,13 +20,19 @@
         text-align: center;
     }
     .resource-content{
-        font-size: 150%;
+        font-size: 125%;
+        line-height: 1.5em;
         text-align: center;
         padding: 0 0.5em;
+        min-width: 15ch;
+        max-width: 32ch;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
     &.resource-file {
         .resource-header {
-            color: black !important;
+            color: black !important;            
         }
     }
 }

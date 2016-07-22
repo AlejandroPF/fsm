@@ -51,7 +51,110 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
             class: "",
             iconNormal: "",
             iconHover: "",
-            name: ""
+            name: "",
+            parseFileType: function () {
+                var split = this.name.split(".");
+                switch (split[split.length - 1]) {
+                    /**
+                     * ZIP/PACKAGE FILES
+                     */
+                    case "zip":
+                    case "rar":
+                    case "7z":
+                    case "tar":
+                    case "gz":
+                        this.iconNormal = "fa fa-file-archive-o";
+                        this.iconHover = "fa fa-file-archive-o";
+                        break;
+                        /**
+                         * VIDEO FILES
+                         */
+                    case "mp4":
+                        this.iconNormal = "fa fa-video-o";
+                        this.iconHover = "fa fa-video-o";
+                        break;
+                        /**
+                         * AUDIO FILES
+                         */
+                    case "mp3":
+                    case "wav":
+                    case "wma":
+                        this.iconNormal = "fa fa-audio-o";
+                        this.iconHover = "fa fa-audio-o";
+                        break;
+                        /**
+                         * MS WORD FILES
+                         */
+                    case "doc":
+                    case "docx":
+                        this.iconNormal = "fa fa-file-word-o";
+                        this.iconHover = "fa fa-file-word-o";
+                        break;
+                        /**
+                         * MS EXCEL FILES
+                         */
+                    case "xls":
+                    case "xlsx":
+                        this.iconNormal = "fa fa-file-excel-o";
+                        this.iconHover = "fa fa-file-excel-o";
+                        break;
+                        /**
+                         * TEXT FILES
+                         */
+                    case "md":
+                    case "txt":
+                    case "csv":
+                        this.iconNormal = "fa fa-file-text-o";
+                        this.iconHover = "fa fa-file-text";
+                        break;
+                        /*
+                         * SOURCE FILES
+                         */
+                    case "php":
+                    case "html":
+                    case "js":
+                    case "css":
+                    case "scss":
+                    case "bat":
+                    case "cmd":
+                    case "sh":
+                    case "bash":
+                        this.iconNormal = "fa fa-file-code-o";
+                        this.iconHover = "fa fa-file-code-o";
+                        break;
+                        /**
+                         * PDF FILE
+                         */
+                    case "pdf":
+                        this.iconNormal = "fa fa-file-pdf-o";
+                        this.iconHover = "fa fa-file-pdf-o";
+                        break;
+                        /**
+                         * IMAGE FILE
+                         */
+                    case "img":
+                    case "png":
+                    case "jpeg":
+                    case "jpg":
+                    case "gif":
+                    case "svg":
+                    case "ico":
+                        this.iconNormal = "fa fa-file-image-o";
+                        this.iconHover = "fa fa-file-image-o";
+                        break;
+                        /**
+                         * DATABASE FILES
+                         */
+                    case "mdb":
+                    case "db":
+                    default:
+                        this.iconNormal = "fa fa-file-o";
+                        this.iconHover = "fa fa-file";
+                        break;
+                }
+
+                this.icon = this.iconNormal;
+            }
         }
     };
     var Alert = function () {
@@ -74,6 +177,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
     }
     HttpService.getResources($scope.source).success(function (data) {
         if (!data.error) {
+            console.log(data);
             var directories = data.response.directories;
             var files = data.response.files;
             if (directories.length === 0 && files.length === 0) {
@@ -100,6 +204,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
                 res.class = "resource-file";
                 res.iconNormal = res.icon;
                 res.iconHover = "fa fa-file";
+                res.parseFileType();
                 $scope.resources.push(res);
             }
 
@@ -110,6 +215,8 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
                 $scope.error = "Se ha producido un error al obtener el sistema de ficheros. Contacte con el administrador";
             }
         }
+    }).error(function (data) {
+        console.log(data);
     });
     //todo Comprobar la ruta con el servicio web
 });
