@@ -44,6 +44,12 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
     $scope.alert = false;
     $scope.error = false;
     $scope.resources = [];
+    $scope.downloadFile = function (url) {
+        console.log(url);
+        if ("undefined" !== typeof url) {
+            window.open(url);
+        }
+    }
     var Resource = function () {
         return {
             anchor: "",
@@ -184,14 +190,15 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
     }
     $scope.openFileInfo = function (source, name) {
         $scope.modal.title = name;
-        HttpService.getFileInfo($scope.source + name).success(function (data) {
+        HttpService.getFileInfo($scope.source +"/"+ name).success(function (data) {
             if (!data.error) {
                 $scope.modal.element = data.response;
-                $('.modal').modal("show");    
+                $('.modal').modal("show");
+                console.log(data);
             } else {
                 console.log(data);
-                $scope.alert.class="danger";
-                $scope.alert.message= data.response.message;
+                $scope.alert.class = "danger";
+                $scope.alert.message = data.response.message;
             }
         })
 
