@@ -1,74 +1,23 @@
-@charset "UTF-8";
-div.resource {
-  display: inline-block;
-  min-width: 125px;
-  border: solid 1px transparent;
-  border-radius: 4px;
-  margin: 0.25em;
-}
-div.resource:hover {
-  background-color: #eee !important;
-  border: solid 1px #e0e0e0;
-}
-div.resource .resource-header {
-  font-size: 300%;
-  color: #E7D995;
-  text-shadow: 2px 2px 3px #aaa;
-  padding: 0 !important;
-  text-align: center;
-}
-div.resource .resource-content {
-  font-size: 125%;
-  line-height: 1.5em;
-  text-align: center;
-  padding: 0 0.5em;
-  min-width: 15ch;
-  max-width: 32ch;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-div.resource.resource-file .resource-header {
-  color: black !important;
-}
-
-.resource {
-  cursor: pointer;
-  vertical-align: top;
-  box-sizing: border-box;
-}
-.resource .resource-header {
-  font-size: 120%;
-  color: #E7D995;
-  text-shadow: 2px 2px 3px #aaa;
-}
-
-.navbar {
-  margin-bottom: 0 !important;
-}
-
-.page-header {
-  margin: 0;
-  border-bottom: solid 1px #dddddd;
-  padding: 1em;
-}
-.page-header h1, .page-header h2, .page-header h3, .page-header h4, .page-header h5, .page-header h6 {
-  margin: 0.25em;
-}
-.page-header p {
-  margin: 0.25em 0;
-}
-
-/*
-* A├▒ade cursor a elementos bootstrap
-*/
-.nav,
-.pagination,
-.carousel,
-.panel-title a {
-  cursor: pointer;
-}
-
-.breadcrumb {
-  box-shadow: 0px 4px 12px rgba(127, 127, 127, 0.25);
-}
+﻿/*!
+ * The MIT License
+ *
+ * Copyright 2016 Alejandro Peña Florentín (alejandropenaflorentin@gmail.com).
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */.bold{font-weight:bold}.italic{font-style:italic}.underline{text-decoration:underline}div.resource{display:inline-block;min-width:125px;border:solid 1px transparent;border-radius:4px;margin:0.25em}div.resource:hover{background-color:#eee !important;border:solid 1px #e0e0e0}div.resource .resource-header{font-size:300%;color:#E7D995;text-shadow:2px 2px 3px #aaa;padding:0 !important;text-align:center}div.resource .resource-content{font-size:125%;line-height:1.5em;text-align:center;padding:0 0.5em;min-width:15ch;max-width:32ch;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}div.resource.resource-file .resource-header{color:black !important}.resource{cursor:pointer;vertical-align:top;box-sizing:border-box}.resource .resource-header{font-size:120%;color:#E7D995;text-shadow:2px 2px 3px #aaa}.navbar{margin-bottom:0 !important}.page-header{margin:0;border-bottom:solid 1px #ddd;padding:1em}.page-header h1,.page-header h2,.page-header h3,.page-header h4,.page-header h5,.page-header h6{margin:0.25em}.page-header p{margin:0.25em 0}.nav,.pagination,.carousel,.panel-title a{cursor:pointer}.breadcrumb{box-shadow:0px 4px 12px rgba(127,127,127,0.25)}
