@@ -1,7 +1,7 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <ng-include src="'partials/breadcrumb.html'"></ng-include>
 <div class="alert alert-danger" ng-if="error">{{error}}</div>
-<div class="container-fluid">
+<div class="container-fluid" ng-if="viewMode === 'icon'">
     <div class="alert alert-{{alert.class}}" ng-if="alert">{{alert.message}}</div>
     <div ng-repeat="element in resources" class="resource {{element.class}}" ng-click="element.click()" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover)" ng-mouseleave="changeIcon(element, element.iconNormal)">
         <div class="resource-header" >
@@ -10,6 +10,15 @@
         <div class="resource-content">
             {{element.name}}
         </div>
+    </div>
+</div>
+<div class="container-fluid" ng-if="viewMode === 'list'">
+    <div class="list-group">
+        <a ng-repeat="element in resources" ng-click="element.click()" class="list-group-item {{element.class}} resource" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover); element.class='active'" ng-mouseleave="changeIcon(element, element.iconNormal); element.class=''">
+            <span class="{{element.icon}}" ng-if="element.isFile"></span>
+            <span class="{{element.icon}} resource-header" ng-if="!element.isFile"></span>
+            {{element.name}}
+        </a>
     </div>
 </div>
 <div class="modal fade" tabindex="-1" role="dialog">

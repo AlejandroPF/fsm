@@ -1,7 +1,7 @@
 var module = angular.module("FsmApp.controllers", []);
 
 module.controller("MainController", function ($scope, $location, HttpService) {
-    //todo App Controller
+    $scope.viewMode = localStorage.getItem("viewMode") || "icon";
 });
 module.controller("BreadcrumbController", function ($scope) {
     var pathLevel = function (route) {
@@ -30,10 +30,15 @@ module.controller("BreadcrumbController", function ($scope) {
         }
     }
 });
-module.controller("NavController", function ($scope) {
-
+module.controller("NavController", function ($scope,$location) {
+    console.log("NAVCOTROLLER");    
+    $scope.changeViewMode = function (mode) {
+        localStorage.setItem("viewMode",mode);
+        window.location.reload();
+    }
 });
 module.controller("FsController", function ($scope, $location, HttpService, $routeParams) {
+    console.log($scope.viewMode);
     if ("undefined" === typeof $routeParams.path) {
         $routeParams.path = "/";
     } else {
@@ -58,6 +63,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
             iconNormal: "",
             iconHover: "",
             name: "",
+            isFile: false,
             click: function () {
                 // Click event
             },
@@ -172,7 +178,6 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
             message: "",
         }
     }
-
     $scope.changeIcon = function (resource, newIcon) {
         resource.icon = newIcon;
     }
@@ -190,7 +195,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
     }
     $scope.openFileInfo = function (source, name) {
         $scope.modal.title = name;
-        HttpService.getFileInfo($scope.source +"/"+ name).success(function (data) {
+        HttpService.getFileInfo($scope.source + "/" + name).success(function (data) {
             if (!data.error) {
                 $scope.modal.element = data.response;
                 $('.modal').modal("show");
@@ -234,6 +239,7 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
                 res.class = "resource-file";
                 res.iconNormal = res.icon;
                 res.iconHover = "fa fa-file";
+                res.isFile = true;
                 res.click = function () {
                     $scope.openFileInfo(this.anchor, this.name);
                 }
@@ -249,7 +255,6 @@ module.controller("FsController", function ($scope, $location, HttpService, $rou
             }
         }
     }).error(function (data) {
-        console.log(data);
     });
     //todo Comprobar la ruta con el servicio web
 });

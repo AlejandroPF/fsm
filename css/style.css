@@ -1,26 +1,23 @@
 @charset "UTF-8";
-.resource {
+div.resource {
   display: inline-block;
-  cursor: pointer;
   min-width: 125px;
-  vertical-align: top;
-  box-sizing: border-box;
   border: solid 1px transparent;
   border-radius: 4px;
   margin: 0.25em;
 }
-.resource:hover {
-  background-color: #eee;
+div.resource:hover {
+  background-color: #eee !important;
   border: solid 1px #e0e0e0;
 }
-.resource .resource-header {
+div.resource .resource-header {
   font-size: 300%;
   color: #E7D995;
   text-shadow: 2px 2px 3px #aaa;
   padding: 0 !important;
   text-align: center;
 }
-.resource .resource-content {
+div.resource .resource-content {
   font-size: 125%;
   line-height: 1.5em;
   text-align: center;
@@ -31,8 +28,19 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.resource.resource-file .resource-header {
+div.resource.resource-file .resource-header {
   color: black !important;
+}
+
+.resource {
+  cursor: pointer;
+  vertical-align: top;
+  box-sizing: border-box;
+}
+.resource .resource-header {
+  font-size: 120%;
+  color: #E7D995;
+  text-shadow: 2px 2px 3px #aaa;
 }
 
 .navbar {

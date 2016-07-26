@@ -1,12 +1,8 @@
-.resource {
+div.resource {
     display: inline-block;
-    cursor: pointer;
     min-width: 125px;
-    vertical-align: top;
-
-    box-sizing: border-box;
     &:hover {
-        background-color: #eee;
+        background-color: #eee !important;
         border: solid 1px #e0e0e0;
     }
     border: solid 1px transparent;
@@ -34,5 +30,15 @@
         .resource-header {
             color: black !important;            
         }
+    }
+}
+.resource {
+    cursor: pointer;   
+    vertical-align: top;
+    box-sizing: border-box;
+    .resource-header {
+        font-size: 120%;
+        color: #E7D995;
+        text-shadow: 2px 2px 3px #aaa;
     }
 }
