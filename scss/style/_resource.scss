@@ -21,12 +21,48 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-.bold {
-    font-weight: bold;
+
+div.resource {
+    display: inline-block;
+    min-width: 125px;
+    &:hover {
+        background-color: #eee !important;
+        border: solid 1px #e0e0e0;
+    }
+    border: solid 1px transparent;
+    border-radius: 4px;
+    margin: 0.25em;
+    .resource-header {
+        font-size: 300%;
+        color: #E7D995;
+        text-shadow: 2px 2px 3px #aaa;
+        padding: 0 !important;
+        text-align: center;
+    }
+    .resource-content{
+        font-size: 125%;
+        line-height: 1.5em;
+        text-align: center;
+        padding: 0 0.5em;
+        min-width: 15ch;
+        max-width: 32ch;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    &.resource-file {
+        .resource-header {
+            color: black !important;            
+        }
+    }
 }
-.italic {
-    font-style: italic;
-}
-.underline {
-    text-decoration: underline;
+.resource {
+    cursor: pointer;   
+    vertical-align: top;
+    box-sizing: border-box;
+    .resource-header {
+        font-size: 120%;
+        color: #E7D995;
+        text-shadow: 2px 2px 3px #aaa;
+    }
 }
