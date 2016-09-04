@@ -1,0 +1,96 @@
+<div id="uploadSection" ng-controller="FileUploadController" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+    <div ng-show="uploader.isHTML5">
+        <!-- 3. nv-file-over uploader="link" over-class="className" -->
+        <div id='dropDiv' uploader="uploader" nv-file-over=""></div>
+    </div>
+
+    <div class='panel panel-primary' style='position: fixed; bottom: 0; right: 0; left:0;  z-index: 9999; max-height: 750px'>
+        <div class='panel-heading' data-toggle="collapse" data-target="#collapseFileUpload">
+            Archivos ({{ uploader.queue.length}})
+        </div>
+        <div class='panel-body collapse' id='collapseFileUpload'>
+            <input type="file" nv-file-select="" uploader="uploader" multiple/>
+            <h3>Cola de subida</h3>
+            <p>Archivos totales: {{ uploader.queue.length}}</p>
+            <br/>
+
+            <div class="row">
+                <div class="col-md-4"><strong>Nombre</strong></div>
+                <div class="col-md-2" ng-show="uploader.isHTML5"><strong>Tamaño</strong></div>
+                <div class="col-md-2" ng-show="uploader.isHTML5"><strong>Progreso</strong></div>
+                <div class="col-md-2"><strong>Estado</strong></div>
+                <div class="col-md-2"><strong>Acciones</strong></div>
+            </div>
+            <div id='asd' style='overflow-x: hidden; overflow-y: scroll; max-height: 350px;'>
+                <div class='row' ng-repeat="item in uploader.queue">
+                    <div class='col-md-4'>{{ item.file.name}}</div>
+                    <div class='col-md-2' ng-show="uploader.isHTML5">{{ item.file.size / 1024|number:2 }} KB</div>
+                    <div class='col-md-2' ng-show="uploader.isHTML5">
+                        <div class="progress" style="margin-bottom: 0;">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                        </div>
+                    </div>
+                    <div class='col-md-2 text-center'>
+                        <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                        <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                        <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                    </div>
+                    <div class='col-md-2'>
+                        <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Subir
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancelar
+                        </button>
+                        <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <hr/>
+                <div>
+                    Progreso de la cola:
+                    <div class="progress" style="">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                    <span class="glyphicon glyphicon-upload"></span> Subir todo
+                </button>
+                <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancelar todo
+                </button>
+                <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                    <span class="glyphicon glyphicon-trash"></span> Eliminar todo
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id='a'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{modal.title}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4"><strong>Tamaño</strong></div>
+                    <div class="col-md-4">{{modal.element.size}}</div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-4"><strong>Última modificación</strong></div>
+                    <div class="col-md-4">{{modal.element.lastUpdate}}</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="downloadFile(modal.element.download)"><span class="glyphicon glyphicon-download-alt"></span> Descargar</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

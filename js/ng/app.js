@@ -1,11 +1,14 @@
 var app = angular.module('FsmApp', [
     'FsmApp.controllers',
     'FsmApp.services',
-    'ngRoute'
+    'ngRoute',
+    'angularFileUpload',
 ]);
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
                 when("/login/", {templateUrl: "partials/login.html", controller: "LoginController"}).
+                when("/users/", {templateUrl: "partials/users.html", controller: "UsersController"}).
+                when("/chpwd/", {templateUrl: "partials/chpwd.html", controller: "ChangePasswordController"}).
                 when("/!/:path*?",{templateUrl: "partials/fs.html",controller: "FsController"}).
                 otherwise({redirectTo: '/login/'});
     }]);

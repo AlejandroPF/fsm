@@ -1,0 +1,54 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class='container'>
+    <div class='alert alert-danger' ng-show="error">
+        {{error}}
+    </div>
+    <div class='page-header'>
+        <h1>Usuarios</h1>
+    </div>
+    <br/>
+    <button type="button" class='btn btn-success' ng-click='showUserModal()'><span class='fa fa-plus'></span> Agregar</button>
+    <hr/>
+    <table class='table table-condensed table-striped'>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in users track by $index">
+                <td>{{$index}}</td>
+                <td>{{item}}</td>
+                <td><button type='button' class='btn btn-danger' ng-click="deleteUser(item)"><span class='glyphicon glyphicon-remove'></span></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<form ng-submit="createNewUser()">
+    <div class="modal fade" role="dialog" id="modalNewUser">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Nuevo usuario</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Nombre</label>
+                    <input type='text' id='userAddName' class='form-control' autofocus="true" autocomplete="off"/>
+                    <label>Contraseña</label>
+                    <input type='password' id='userAddPassword' class='form-control' autocomplete="off"/>
+                    <br/>
+                    <div ng-show="errorCreatingUser" class="alert alert-danger">
+                        {{errorCreatingUser}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Crear</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</form>

@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand" href="/#/!/">Web File System Manager</a>
         </div>
-        
+
         <div class='collapse navbar-collapse' id='main-navbar'>
             <ul class="nav navbar-nav">
                 <li class="dropdown">
@@ -20,12 +20,25 @@
                     </ul>
                 </li>
             </ul>
-            <form class='navbar-form navbar-right'>
-                <div class='form-group'>
-                    <input type='file' class='form-control'/>
-                </div>
-                <button type='submit' class='btn btn-primary'><span class='glyphicon glyphicon-upload'></span></button>
-            </form>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button">Nuevo <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-click="showNewFolderModal()"><a><span class="fa fa-folder"></span> Carpeta</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button"><span class="fa fa-cog"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/#/chpwd/"><span class="fa fa-lock"></span> Cambiar contraseña</a></li>
+                        <li ng-show="usersCanBeShown()"><a href="/#/users/"><span class="fa fa-user"></span> Usuarios</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/#/login/"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>

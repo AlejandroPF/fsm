@@ -1,0 +1,25 @@
+<ng-include src="'partials/navbar.html'"></ng-include>
+<div class="container">
+    <div class="page-header">
+        <h1>Cambiar contraseña para el usuario '{{user}}'</h1>
+    </div>
+    <br/>
+    <div class='alert alert-danger' ng-show="pwdError">
+        {{pwdError}}
+    </div>
+    <br/>
+    <form ng-submit="changePassword()">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Contraseña</label>
+                <input type="password" id='chpwd' class="form-control"/>
+            </div>
+            <div class="col-md-6">
+                <label>Repetir contraseña</label>
+                <input type="password" id='repChpwd' class="form-control"/>
+            </div>
+        </div>
+        <br/>
+        <button class="btn btn-success">Cambiar contraseña</button>
+    </form>
+</div>

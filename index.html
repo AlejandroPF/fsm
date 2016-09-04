@@ -7,14 +7,43 @@
         <link rel='stylesheet' href='/css/bootstrap.min.css'/>
         <link rel='stylesheet' href='/css/bootstrap-theme.min.css'/>
         <link rel='stylesheet' href='/css/style.css'/>
+        <style>
+            .my-drop-zone { 
+                border: dotted 3px lightgray;
+
+            }
+            .nv-file-over { 
+                border: dotted 3px red; 
+                background-color: rgba(127,127,127,0.5);
+                z-index: 999 !important;
+            } /* Default class applied to drop zones on over */
+            .another-file-over-class { border: dotted 3px green; }
+            #dropDiv {
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                z-index: -9999;
+            }
+
+            *[data-toggle=collapse]{
+                cursor: pointer;
+            }
+        </style>
     </head>
-    <body ng-app="FsmApp" ng-controller="MainController">
+    <body ng-app="FsmApp" ng-controller="MainController" >
     <ng-view></ng-view>
 
+    <!-- Fix for old browsers -->
+    <script src="http://nervgh.github.io/js/es5-shim.min.js"></script>
+    <script src="http://nervgh.github.io/js/es5-sham.min.js"></script>
+    <script src="/js/console-sham.js"></script>
     <script src='/js/jquery-2.1.4.min.js'></script>
     <script src='/js/bootstrap.min.js'></script>
     <script src='/js/bsAlert.js'></script>
     <script src='/js/ng/angular.min.js'></script>
+    <script src='/js/ng/angular-file-upload.min.js'></script>
     <script src='/js/ng/angular-route.min.js'></script>
     <script src='/js/ng/services.js'></script>
     <script src='/js/ng/controllers.js'></script>

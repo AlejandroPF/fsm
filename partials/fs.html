@@ -1,6 +1,6 @@
 <ng-include src="'partials/navbar.html'"></ng-include>
 <ng-include src="'partials/breadcrumb.html'"></ng-include>
-<div class="alert alert-danger" ng-if="error">{{error}}</div>
+<div class="alert alert-danger" id='fileViewer' ng-if="error">{{error}}</div>
 <div class="container-fluid" ng-if="viewMode === 'icon'">
     <div class="alert alert-{{alert.class}}" ng-if="alert">{{alert.message}}</div>
     <div ng-repeat="element in resources" class="resource {{element.class}}" ng-click="element.click()" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover)" ng-mouseleave="changeIcon(element, element.iconNormal)">
@@ -14,35 +14,13 @@
 </div>
 <div class="container-fluid" ng-if="viewMode === 'list'">
     <div class="list-group">
-        <a ng-repeat="element in resources" ng-click="element.click()" class="list-group-item {{element.class}} resource" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover); element.class='active'" ng-mouseleave="changeIcon(element, element.iconNormal); element.class=''">
+        <a ng-repeat="element in resources" ng-click="element.click()" class="list-group-item {{element.class}} resource" title="{{element.name}}" ng-mouseenter="changeIcon(element, element.iconHover); element.class = 'active'" ng-mouseleave="changeIcon(element, element.iconNormal); element.class = ''">
             <span class="{{element.icon}}" ng-if="element.isFile"></span>
             <span class="{{element.icon}} resource-header" ng-if="!element.isFile"></span>
             {{element.name}}
         </a>
     </div>
 </div>
-<div class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">{{modal.title}}</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-4"><strong>Tamaño</strong></div>
-                    <div class="col-md-4">{{modal.element.size}}</div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-4"><strong>Última modificación</strong></div>
-                    <div class="col-md-4">{{modal.element.lastUpdate}}</div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" ng-click="downloadFile(modal.element.download)"><span class="glyphicon glyphicon-download-alt"></span> Descargar</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<button type='button' class='btn btn-danger' ng-click='deleteFile($scope.source)' ng-show="resources.length == 0 && source !=='/' ">Borrar directorio</button>
+<ng-include src="'partials/modals.html'"></ng-include>
+<ng-include src="'partials/fileUpload.html'"></ng-include>
