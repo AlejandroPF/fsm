@@ -161,9 +161,7 @@ module.controller("MainController", function ($scope, $location, $routeParams, H
                 if (!data.error) {
                     $scope.modal.element = data.response;
                     $('#modalFileInfo').modal("show");
-                    console.log(data);
                 } else {
-                    console.log(data);
                     $scope.alert.class = "danger";
                     $scope.alert.message = data.response.message;
                 }
